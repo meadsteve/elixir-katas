@@ -25,4 +25,20 @@ defmodule KataTest do
     assert Kata.to_numerals(8) == "VIII"
   end
 
+  test "9 is represented by IX" do
+    assert Kata.to_numerals(9) == "IX"
+  end
+
+  test "10 is represented by X" do
+    assert Kata.to_numerals(10) == "X"
+  end
+
+  test "some higher numbers work" do
+    assert Kata.to_numerals(50) == "L"
+    assert Kata.to_numerals(49) == "XLIX"
+
+    assert Kata.to_numerals(100) == "C"
+    assert Kata.to_numerals(99) == "XCIX"
+  end
+
 end
