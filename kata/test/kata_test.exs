@@ -35,6 +35,14 @@ defmodule KataTest do
     assert Kata.WordDictionary.words_like(dict, "sTeve") == ["steve"]
   end
 
+  test "no duplicates please" do
+    dict = Kata.WordDictionary.new
+    |> Kata.WordDictionary.add_word("steve")
+    |> Kata.WordDictionary.add_word("steve")
+
+    assert Kata.WordDictionary.words_like(dict, "steve") == ["steve"]
+  end
+
   test "can be loaded from a file" do
     dict = Kata.WordDictionary.new_from_file("data/wordlist.txt")
     assert Kata.WordDictionary.words_like(dict, "spod") == ["spod", "pods", "dops"]

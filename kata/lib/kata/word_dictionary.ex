@@ -31,7 +31,7 @@ defmodule Kata.WordDictionary do
       words,
       key,
       [word],
-      fn(existing_words) -> [word | existing_words] end
+      fn(existing_words) -> [word | existing_words] |> Enum.uniq end
     )
   end
 
