@@ -7,6 +7,10 @@ defmodule Kata.WordDictionary do
     %Kata.WordDictionary{}
   end
 
+  def new_from_file(path) do
+    new |> parse_file(path)
+  end
+
   def add_word(dict, word) do
     key = key_for_dict(dict, word)
     updated_words = store_word(dict.words, key, tidied_word(word))
@@ -37,6 +41,13 @@ defmodule Kata.WordDictionary do
 
   defp tidied_word(word) do
     String.downcase(word)
+  end
+
+  defp parse_file(initial_dict, path) do
+    File.stream!(path)
+    |> Stream.filter(&String.valid?/1)
+    |> Stream.map(fn (word) -> String.rstrip(word, ?\n) end)
+    |> Enum.reduce(initial_dict, fn(word, dict) -> add_word(dict, word) end)
   end
 
 end

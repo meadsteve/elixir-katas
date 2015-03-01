@@ -35,4 +35,9 @@ defmodule KataTest do
     assert Kata.WordDictionary.words_like(dict, "sTeve") == ["steve"]
   end
 
+  test "can be loaded from a file" do
+    dict = Kata.WordDictionary.new_from_file("data/wordlist.txt")
+    assert Kata.WordDictionary.words_like(dict, "spod") == ["spod", "pods", "dops"]
+  end
+
 end
